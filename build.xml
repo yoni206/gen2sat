@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project gen2sat with Jar-in-Jar Loader">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+    <target name="create_run_jar">
+        <delete file="/Users/yonizohar/Dropbox/eclipse-ws-for-play/gen2sat/benchmarks/gen2satvsmettel/softwares/gen2sat/gen2sat.jar"/>
+	<delete file="/Users/yonizohar/Dropbox/eclipse-ws-for-play/satBasedDecProc/lib/gen2sat.jar"/>
+	<jar destfile="/Users/yonizohar/Dropbox/eclipse-ws-for-play/gen2sat/benchmarks/gen2satvsmettel/softwares/gen2sat/gen2sat.jar">
+            <manifest>
+                <attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
+                <attribute name="Rsrc-Main-Class" value="controllers.CmdApplication"/>
+                <attribute name="Class-Path" value="."/>
+                <attribute name="Rsrc-Class-Path" value="./ commons-collections4-4.0.jar commons-io-2.4.jar commons-math3-3.5.jar org.sat4j.core.jar"/>
+            </manifest>
+            <zipfileset src="jar-in-jar-loader.zip"/>
+            <fileset dir="/Users/yonizohar/Dropbox/eclipse-ws-for-play/gen2sat/bin"/>
+            <zipfileset dir="/Users/yonizohar/Dropbox/eclipse-ws-for-play/gen2sat/lib" includes="commons-collections4-4.0.jar"/>
+            <zipfileset dir="/Users/yonizohar/Dropbox/eclipse-ws-for-play/gen2sat/lib" includes="commons-io-2.4.jar"/>
+            <zipfileset dir="/Users/yonizohar/Dropbox/eclipse-ws-for-play/gen2sat/lib" includes="commons-math3-3.5.jar"/>
+            <zipfileset dir="/Users/yonizohar/Dropbox/eclipse-ws-for-play/gen2sat/lib" includes="org.sat4j.core.jar"/>
+        </jar>
+	<copy file="/Users/yonizohar/Dropbox/eclipse-ws-for-play/gen2sat/benchmarks/newbenchmarks/softwares/gen2sat/gen2sat.jar" todir="/Users/yonizohar/Dropbox/eclipse-ws-for-play/satBasedDecProc/lib"/>
+    </target>
+</project>

@@ -1,0 +1,212 @@
+connectives: AND:2,OR:2,IMPLIES:2,NOT:1,TOP:0
+rule: =>p1; =>p2 / => p1 AND p2
+rule: p1,p2=> / p1 AND p2
+rule: =>p1,p2 / => p1 OR p2
+rule: p1=> p2=> / p1 OR p2 =>
+rule: p1 => p2 / =>p1 IMPLIES p2
+rule: =>p1; p2=> / p1 IMPLIES p2 =>
+rule: =>p1 / NOT p1 =>
+rule: p1 => / =>NOT p1
+rule: / =>TOP
+analyticity: 
+sequent: (p1 OR p2) AND ((p1 IMPLIES p3) AND (p2 IMPLIES p3))=>p3
+provable: true
+
+connectives: AND:2,OR:2,IMPLIES:2,NOT:1,TOP:0
+nextOperators: BOX
+rule: =>p1; =>p2 / => p1 AND p2
+rule: p1,p2=> / p1 AND p2
+rule: =>p1,p2 / => p1 OR p2
+rule: p1=> p2=> / p1 OR p2 =>
+rule: p1 => p2 / =>p1 IMPLIES p2
+rule: =>p1; p2=> / p1 IMPLIES p2 =>
+rule: =>p1 / NOT p1 =>
+rule: p1 => / =>NOT p1
+rule: / =>TOP
+analyticity: 
+sequent: =>(NOT BOX (p1 AND NOT p1))
+provable: true
+
+connectives: AND:2,OR:2,IMPLIES:2,NOT:1,TOP:0
+nextOperators: BOX
+rule: =>p1; =>p2 / => p1 AND p2
+rule: p1,p2=> / p1 AND p2
+rule: =>p1,p2 / => p1 OR p2
+rule: p1=> p2=> / p1 OR p2 =>
+rule: p1 => p2 / =>p1 IMPLIES p2
+rule: =>p1; p2=> / p1 IMPLIES p2 =>
+rule: =>p1 / NOT p1 =>
+rule: p1 => / =>NOT p1
+rule: / =>TOP
+analyticity: 
+sequent: BOX p1 => NOT BOX NOT p1
+provable: true
+
+connectives: AND:2,OR:2,IMPLIES:2,NOT:1,TOP:0
+nextOperators: BOX
+rule: =>p1; =>p2 / => p1 AND p2
+rule: p1,p2=> / p1 AND p2
+rule: =>p1,p2 / => p1 OR p2
+rule: p1=> p2=> / p1 OR p2 =>
+rule: p1 => p2 / =>p1 IMPLIES p2
+rule: =>p1; p2=> / p1 IMPLIES p2 =>
+rule: =>p1 / NOT p1 =>
+rule: p1 => / =>NOT p1
+rule: / =>TOP
+analyticity: 
+sequent:  NOT BOX NOT p1 => BOX p1
+provable: true
+
+connectives: AND:2,OR:2,IMPLIES:2,NOT:1,TOP:0
+nextOperators: BOX
+rule: =>p1; =>p2 / => p1 AND p2
+rule: p1,p2=> / p1 AND p2
+rule: =>p1,p2 / => p1 OR p2
+rule: p1=> p2=> / p1 OR p2 =>
+rule: p1 => p2 / =>p1 IMPLIES p2
+rule: =>p1; p2=> / p1 IMPLIES p2 =>
+rule: =>p1 / NOT p1 =>
+rule: p1 => / =>NOT p1
+rule: / =>TOP
+analyticity: 
+sequent: p1 => BOX p1
+provable: false
+
+connectives: AND:2,OR:2,IMPLIES:2,TOP:0
+nextOperators: q1 said, q2 said, q3 said, q4 said
+rule: =>p1; =>p2 / => p1 AND p2
+rule: p1,p2=> / p1 AND p2
+rule: =>p1,p2 / => p1 OR p2
+rule: => p2 / =>p1 IMPLIES p2
+rule: =>p1; p2=> / p1 IMPLIES p2 =>
+rule: / =>TOP
+analyticity: 
+inputSequent: => q1 said (p1 IMPLIES p1)
+sequent: q1 said ((p1 OR p2) AND ((p1 IMPLIES p3) AND (p2 IMPLIES p3)))=>q1 said p3
+provable: false
+
+connectives: AND:2,OR:2,IMPLIES:2,NOT:1, TOP:0, BOT:0
+nextOperators: q1 said, q2 said, q3 said, q4 said
+rule: =>p1; =>p2 / => p1 AND p2
+rule: p1,p2=> / p1 AND p2
+rule: =>p1,p2 / => p1 OR p2
+rule: => p2 / =>p1 IMPLIES p2
+rule: =>p1; p2=> / p1 IMPLIES p2 =>
+rule: / =>TOP
+rule: /=>BOT IMPLIES p1
+rule: /BOT OR p1=>p1
+rule: /p1 OR BOT=> p1
+rule: /(p1 AND p2) OR p1 => p1
+rule: /p1 OR (p1 AND p2) => p1
+rule: /p1 OR p1 => p1
+rule: /p1,NOT p1=>
+rule: /=>p2 IMPLIES (p1 IMPLIES p2)
+rule: /=>p1 IMPLIES p1
+rule: /=>(p1 AND p2) IMPLIES p1
+rule: /=>(p1 AND p2) IMPLIES p2
+analyticity: 
+sequent: q1 said ((p1 OR p2) AND ((p1 IMPLIES p3) AND (p2 IMPLIES p3)))=>q1 said p3
+provable: false
+
+connectives: AND:2,OR:2,IMPLIES:2,NOT:1,TOP:0
+rule: =>p1; =>p2 / => p1 AND p2
+rule: p1,p2=> / p1 AND p2
+rule: =>p1,p2 / => p1 OR p2
+rule: p1=> p2=> / p1 OR p2 =>
+rule: p1 => p2 / =>p1 IMPLIES p2
+rule: =>p1; p2=> / p1 IMPLIES p2 =>
+rule: p1=>/NOTNOTp1=>
+rule: p1=>/=>NOTp1
+rule: =>p1;=>NOTp1/NOT(p1 AND NOTp1)=>
+rule: NOTp1=>;NOTp2=>/NOT(p1 AND p2)=>
+rule: NOTp1=>; p2,NOTp2=>/NOT(p1 OR p2)=>
+rule: p1,NOTp1=>;NOTp2=>/NOT(p1 OR p2)=>
+rule: p1=>; p2,NOTp2=>/NOT(p1 IMPLIES p2)=>
+rule: p1,NOTp1=>;NOTp2=>/NOT(p1 IMPLIES p2)=>
+rule: / =>TOP
+analyticity: NOT
+sequent: (p1 OR p2) AND ((p1 IMPLIES p3) AND (p2 IMPLIES p3))=>p3
+provable: true
+
+connectives: AND:2,OR:2,IMPLIES:2,NOT:1,TOP:0
+rule: =>p1; =>p2 / => p1 AND p2
+rule: p1,p2=> / p1 AND p2
+rule: =>p1,p2 / => p1 OR p2
+rule: p1=> p2=> / p1 OR p2 =>
+rule: p1 => p2 / =>p1 IMPLIES p2
+rule: =>p1; p2=> / p1 IMPLIES p2 =>
+rule: p1=>/NOTNOTp1=>
+rule: p1=>/=>NOTp1
+rule: =>p1;=>NOTp1/NOT(p1 AND NOTp1)=>
+rule: NOTp1=>;NOTp2=>/NOT(p1 AND p2)=>
+rule: NOTp1=>; p2,NOTp2=>/NOT(p1 OR p2)=>
+rule: p1,NOTp1=>;NOTp2=>/NOT(p1 OR p2)=>
+rule: p1=>; p2,NOTp2=>/NOT(p1 IMPLIES p2)=>
+rule: p1,NOTp1=>;NOTp2=>/NOT(p1 IMPLIES p2)=>
+rule: / =>TOP
+analyticity: NOT
+sequent: =>  NOT ((A OR  NOT A) AND  NOT (A OR  NOT A))
+provable: false
+
+connectives: AND:2,OR:2,IMPLIES:2,NOT:1,TOP:0
+rule: =>p1; =>p2 / => p1 AND p2
+rule: p1,p2=> / p1 AND p2
+rule: =>p1,p2 / => p1 OR p2
+rule: p1=> p2=> / p1 OR p2 =>
+rule: p1 => p2 / =>p1 IMPLIES p2
+rule: =>p1; p2=> / p1 IMPLIES p2 =>
+rule: p1=>/NOTNOTp1=>
+rule: p1=>/=>NOTp1
+rule: =>p1;=>NOTp1/NOT(p1 AND NOTp1)=>
+rule: NOTp1=>;NOTp2=>/NOT(p1 AND p2)=>
+rule: NOTp1=>; p2,NOTp2=>/NOT(p1 OR p2)=>
+rule: p1,NOTp1=>;NOTp2=>/NOT(p1 OR p2)=>
+rule: p1=>; p2,NOTp2=>/NOT(p1 IMPLIES p2)=>
+rule: p1,NOTp1=>;NOTp2=>/NOT(p1 IMPLIES p2)=>
+rule: / =>TOP
+analyticity: NOT
+sequent:  A AND B=>  NOT ( NOT A OR  NOT B)
+provable: false
+
+connectives: AND:2,OR:2,IMPLIES:2,NOT:1,TOP:0
+rule: =>p1; =>p2 / => p1 AND p2
+rule: p1,p2=> / p1 AND p2
+rule: =>p1,p2 / => p1 OR p2
+rule: p1=> p2=> / p1 OR p2 =>
+rule: p1 => p2 / =>p1 IMPLIES p2
+rule: =>p1; p2=> / p1 IMPLIES p2 =>
+rule: p1=>/NOTNOTp1=>
+rule: p1=>/=>NOTp1
+rule: =>p1;=>NOTp1/NOT(p1 AND NOTp1)=>
+rule: NOTp1=>;NOTp2=>/NOT(p1 AND p2)=>
+rule: NOTp1=>; p2,NOTp2=>/NOT(p1 OR p2)=>
+rule: p1,NOTp1=>;NOTp2=>/NOT(p1 OR p2)=>
+rule: p1=>; p2,NOTp2=>/NOT(p1 IMPLIES p2)=>
+rule: p1,NOTp1=>;NOTp2=>/NOT(p1 IMPLIES p2)=>
+rule: / =>TOP
+analyticity: NOT
+sequent:  NOT (A AND  NOT B)=> A IMPLIES B
+provable: false
+
+connectives: AND:2,OR:2,IMPLIES:2,NOT:1,TOP:0
+rule: =>p1; =>p2 / => p1 AND p2
+rule: p1,p2=> / p1 AND p2
+rule: =>p1,p2 / => p1 OR p2
+rule: p1=> p2=> / p1 OR p2 =>
+rule: p1 => p2 / =>p1 IMPLIES p2
+rule: =>p1; p2=> / p1 IMPLIES p2 =>
+rule: p1=>/NOTNOTp1=>
+rule: p1=>/=>NOTp1
+rule: =>p1;=>NOTp1/NOT(p1 AND NOTp1)=>
+rule: NOTp1=>;NOTp2=>/NOT(p1 AND p2)=>
+rule: NOTp1=>; p2,NOTp2=>/NOT(p1 OR p2)=>
+rule: p1,NOTp1=>;NOTp2=>/NOT(p1 OR p2)=>
+rule: p1=>; p2,NOTp2=>/NOT(p1 IMPLIES p2)=>
+rule: p1,NOTp1=>;NOTp2=>/NOT(p1 IMPLIES p2)=>
+rule: / =>TOP
+analyticity: NOT
+sequent: =>  NOT (A AND  NOT A AND  NOT (A AND  NOT A))
+provable: true
+
+
+

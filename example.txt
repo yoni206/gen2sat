@@ -1,0 +1,12 @@
+connectives: AND:2,OR:2,IMPLIES:2,NOT:1,TOP:0
+rule: =>p1; =>p2 / => p1 AND p2
+rule: p1,p2=> / p1 AND p2
+rule: =>p1,p2 / => p1 OR p2
+rule: p1=> p2=> / p1 OR p2 =>
+rule: p1 => p2 / =>p1 IMPLIES p2
+rule: =>p1; p2=> / p1 IMPLIES p2 =>
+rule: =>p1 / NOT p1 =>
+rule: p1 => / =>NOT p1
+rule: / =>TOP
+analyticity: 
+sequent: (p1 OR p2) AND ((p1 IMPLIES p3) AND (p2 IMPLIES p3))=>p3
