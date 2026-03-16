@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Portable build file for gen2sat.
+  Replaces the original build.xml which had hardcoded absolute paths from the
+  original developer's Mac/Eclipse environment.
+
+  Produces a self-contained fat JAR (gen2sat.jar) by extracting all dependency
+  classes directly into the archive, bypassing the Eclipse jar-in-jar loader
+  which is incompatible with Java 17+.
+
+  Usage:
+    ant -f build-portable.xml          # compile + package (default)
+    ant -f build-portable.xml compile  # compile only
+    ant -f build-portable.xml clean    # remove generated files
+-->
+<project name="gen2sat" default="jar" basedir=".">
+
+    <property name="src.dir"    value="src"/>
+    <property name="bin.dir"    value="bin"/>
+    <property name="lib.dir"    value="lib"/>
+    <property name="fat.dir"    value="fatjar_tmp"/>
+    <property name="jar.file"   value="gen2sat.jar"/>
+
+    <path id="classpath">
+        <fileset dir="${lib.dir}" includes="*.jar"/>
+    </path>
+
+    <!-- ── Step 1: compile sources ─────────────────────────────────────── -->
+    <target name="compile" description="Compile all Java sources into bin/">
+        <mkdir dir="${bin.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${bin.dir}"
+               includeantruntime="false">
+            <classpath refid="classpath"/>
+        </javac>
+    </target>
+
+    <!-- ── Step 2: package fat JAR ─────────────────────────────────────── -->
+    <target name="jar" depends="compile"
+            description="Package a self-contained fat JAR (gen2sat.jar)">
+        <!-- staging area: unpack all dependency JARs then overlay app classes -->
+        <mkdir dir="${fat.dir}"/>
+        <unzip dest="${fat.dir}">
+            <fileset dir="${lib.dir}" includes="*.jar"/>
+        </unzip>
+        <copy todir="${fat.dir}">
+            <fileset dir="${bin.dir}"/>
+        </copy>
+
+        <jar destfile="${jar.file}" basedir="${fat.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="controllers.CmdApplication"/>
+            </manifest>
+        </jar>
+
+        <delete dir="${fat.dir}"/>
+    </target>
+
+    <!-- ── Utility: clean generated files ──────────────────────────────── -->
+    <target name="clean" description="Remove compiled output and JAR">
+        <delete dir="${bin.dir}"/>
+        <delete dir="${fat.dir}"/>
+        <delete file="${jar.file}"/>
+    </target>
+
+</project>

@@ -99,7 +99,7 @@ public class ReflectionCombinationIterator implements Iterator<Set<Integer>> {
 	private Set<Integer> convertToSetOfIntegers(Set<String> setOfStrings) {
 		Set<Integer> result = new TreeSet<Integer>();
 		for (String str : setOfStrings) {
-			Integer integer = new Integer(str);
+			Integer integer = Integer.valueOf(str);
 			result.add(integer);
 		}
 		return result;
