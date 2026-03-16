@@ -1,0 +1,18 @@
+connectives: AND:2,OR:2,IMPLIES:2,NOT:1,TOP:0
+rule: =>p1; =>p2 / => p1 AND p2
+rule: p1,p2=> / p1 AND p2
+rule: =>p1,p2 / => p1 OR p2
+rule: p1=> p2=> / p1 OR p2 =>
+rule: p1 => p2 / =>p1 IMPLIES p2
+rule: =>p1; p2=> / p1 IMPLIES p2 =>
+rule: p1=>/NOTNOTp1=>
+rule: p1=>/=>NOTp1
+rule: =>p1;=>NOTp1/NOT(p1 AND NOTp1)=>
+rule: NOTp1=>;NOTp2=>/NOT(p1 AND p2)=>
+rule: NOTp1=>; p2,NOTp2=>/NOT(p1 OR p2)=>
+rule: p1,NOTp1=>;NOTp2=>/NOT(p1 OR p2)=>
+rule: p1=>; p2,NOTp2=>/NOT(p1 IMPLIES p2)=>
+rule: p1,NOTp1=>;NOTp2=>/NOT(p1 IMPLIES p2)=>
+rule: / =>TOP
+analyticity: NOT
+inputSequent: => NOT (A AND (NOT (A AND (NOT (A AND NOT A)))))
