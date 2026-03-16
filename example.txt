@@ -9,4 +9,4 @@ rule: =>p1 / NOT p1 =>
 rule: p1 => / =>NOT p1
 rule: / =>TOP
 analyticity: 
-sequent: (p1 OR p2) AND ((p1 IMPLIES p3) AND (p2 IMPLIES p3))=>p3
+inputSequent: (p1 OR p2) AND ((p1 IMPLIES p3) AND (p2 IMPLIES p3))=>p3
